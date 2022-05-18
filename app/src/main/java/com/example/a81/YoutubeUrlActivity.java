@@ -21,20 +21,16 @@ public class YoutubeUrlActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_youtube_url);
 
-        //link the variables to the ui elements
         playButton = findViewById(R.id.playButton);
         addToPlaylistButton = findViewById(R.id.addToPlaylistButton);
         myPlaylistButton = findViewById(R.id.myPlaylistButton);
         youtubeUrlTextEdit = findViewById(R.id.youtubeUrlTextEdit);
 
-        //create the variable that allows connection to the database
         Database db = new Database(this);
 
-        //set up the intents to allow swapping to other activities
         Intent playVideo = new Intent(this, VideoActivity.class);
         Intent showPlaylist = new Intent(this, PlaylistActivity.class);
 
-        //on click event to swap to the play video activity
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,21 +45,16 @@ public class YoutubeUrlActivity extends AppCompatActivity {
         addToPlaylistButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //check that the input is not empty
                 if (!youtubeUrlTextEdit.getText().toString().equals("")){
-                    //split the input so that only the required section is sent to the database
                     String inputVideo = youtubeUrlTextEdit.getText().toString();
                     String[] split = inputVideo.split("/watch?v=");
-                    //pull only the required section and insert it into the database table
                     db.InsertVideo(split[split.length-1]);
                 }else{
-                    //tell the user when input is empty
                     Toast.makeText(YoutubeUrlActivity.this, "Youtube video URL is empty", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
-        //on click event to swap to the playlist activity
         myPlaylistButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

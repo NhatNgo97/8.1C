@@ -97,34 +97,24 @@ public class Database extends SQLiteOpenHelper {
     }
 
     public long InsertLogin(Account account){
-        //create a connection to the database
         SQLiteDatabase db = this.getWritableDatabase();
-        //create the query to insert the login data
         ContentValues Values = new ContentValues();
         Values.put("USERNAME", account.getUsername());
         Values.put("PASSWORD", account.getPassword());
         Values.put("FULL_NAME", account.getFullName());
-        //execute the query
         long row = db.insert("LOGIN",null, Values);
-        //close the connection
         db.close();
         return row;
     }
 
     public ArrayList<Account> FetchAllLogins() {
-        //create an arraylist to store the login data
         ArrayList<Account> LoginList = new ArrayList<>();
-        //create a connection to the database
         SQLiteDatabase db = this.getReadableDatabase();
-        //create the query to get the login data from the database
         String SELECT_ALL_LOGIN = "SELECT * FROM LOGIN";
-        //execute the query
         Cursor cursor = db.rawQuery(SELECT_ALL_LOGIN, null);
         if (cursor.moveToFirst()) {
             do {
-                //move the login data into a temporary login variable
                 Account temp = new Account(cursor.getString(1), cursor.getString(2), cursor.getString(3));
-                //add the login variable to the arraylist
                 LoginList.add(temp);
             } while (cursor.moveToNext());
         }

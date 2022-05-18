@@ -22,20 +22,16 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        //link the variables to the UI elements
         signUpFullnameTextEdit = findViewById(R.id.signUpFullnameTextEdit);
         signUpUsernameTextEdit = findViewById(R.id.signUpUsernameTextEdit);
         signUpPasswordTextEdit = findViewById(R.id.signUpPasswordTextEdit);
         signUpConfirmPasswordTextEdit = findViewById(R.id.signUpConfirmPasswordTextEdit);
         createAccountButton = findViewById(R.id.createAccountButton);
 
-        //this variable allows connection to the database
         Database db = new Database(this);
 
-        //set up the intent to return to the main activity
         Intent returnMain = new Intent(this, MainActivity.class);
 
-        //this on click event checks and creaete the login account
         createAccountButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -47,7 +43,6 @@ public class SignUpActivity extends AppCompatActivity {
                         signUpPasswordTextEdit.getText().toString().equals(signUpConfirmPasswordTextEdit.getText().toString())){
                     Account account = new Account(signUpUsernameTextEdit.getText().toString(),
                             signUpConfirmPasswordTextEdit.getText().toString(),signUpFullnameTextEdit.getText().toString());
-                    //insert the account into the table
                     db.InsertLogin(account);
                     startActivity(returnMain);
 

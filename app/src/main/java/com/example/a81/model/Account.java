@@ -5,14 +5,12 @@ public class Account {
     private String _password;
     private String _fullName;
 
-    //constructor for the class
     public Account(String username, String password, String fullName) {
         _username = username;
         _password = password;
         _fullName = fullName;
     }
 
-    //getters and setters for the variables
     public String getUsername() {
         return _username;
     }
