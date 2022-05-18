@@ -39,22 +39,21 @@ public class MainActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                boolean isVerified = false;//this variable is to enable the checking of whether the login details are valid
-                for (int i = 0; i < Logins.size(); i++){//this for loop is to check if the input login details are valid
+                boolean isVerified = false;
+                for (int i = 0; i < Logins.size(); i++){
                     if (Logins.get(i).getUsername().equals(textboxUsername.getText().toString()) &&
                             Logins.get(i).getPassword().equals(textboxPassword.getText().toString())){
                         isVerified = true;
                     }
                 }
-                if (isVerified){//if the login details are valid, swap to the main youtube player activity
+                if (isVerified){
                     startActivity(Login);
-                }else{//if the login details are not valid, inform the user
+                }else{
                     Toast.makeText(MainActivity.this, "The username or password is incorrect.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
-        //onclick to swap to sign up activity
         toSignUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

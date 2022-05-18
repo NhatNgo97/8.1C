@@ -35,7 +35,6 @@ public class SignUpActivity extends AppCompatActivity {
         createAccountButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //check if the required fields are filled
                 if (!signUpFullnameTextEdit.getText().toString().equals("") &&
                         !signUpUsernameTextEdit.getText().toString().equals("") &&
                         !signUpPasswordTextEdit.getText().toString().equals("") &&
